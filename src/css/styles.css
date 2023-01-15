@@ -18,3 +18,23 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+.country-list {
+  list-style-type: none;
+
+  font: inherit;
+}
+
+.country-item {
+  display: flex;
+  gap: 20px;
+}
+
+.country-flag {
+  width: 100px;
+  /* flex-basis: 100px; */
+}
+
+.country-info {
+  font: inherit;
+}
