@@ -9,15 +9,11 @@ const input = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-// console.log(countryList);
-// console.log(countryInfo);
-
 function inputHandler(event) {
     const request = input.value;
 
     fetchCountries(request)
     .finally(() => {
-        // console.log('first action');
         clearMarkup();
     })
     .then(response => {
@@ -25,22 +21,17 @@ function inputHandler(event) {
             throw new Error();
         }
 
-        // console.log('second action');
-
         return response.json();
     })
     .then(data => {
-        // console.log(data);
         const numbersOfCountries = data.length;
         console.log(numbersOfCountries);
 
         if (data.length > 10) {
             Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
         } else if (data.length > 1) {
-            // list
             showCountryList(data, countryList);
         } else {
-            // one contry
             showCountryInfo(data, countryInfo);
         }
     })
@@ -54,7 +45,6 @@ const debouncedInputHandler = debounce(inputHandler, DEBOUNCE_DELAY);
 input.addEventListener('input', debouncedInputHandler);
 
 function showCountryList(data, place) {
-
     const countryArray = data.map(country => {
         const flag = country.flags.png;
         const name = country.name.common;
@@ -80,18 +70,11 @@ function showCountryInfo(data, place) {
     const capital = data[0].capital[0];
     const population = data[0].population;
     const languages = data[0].languages;
-    const languagesStr = Object.values(languages).toString();
-
-    // console.log(name);
-    // console.log(flag);
-    // console.log(capital);
-    // console.log(population);
-    // console.log(languages);
-    // console.log(languagesStr);
+    const languagesStr = Object.values(languages).join(', ');
     
     const markup = `
         <div class="country-info_name-card">
-            <img src="${flag}" alt="the flag of the title country" class="country-info_flag">
+            <img src="${flag}" alt="the flag of the title country" class="country-info_flag country-flag">
             <h2 class="country-info_title">${name}</h2>
         </div>
         <p class="country-info_text"><b>Capital:</b> ${capital}</p>
@@ -106,4 +89,3 @@ function clearMarkup() {
     countryList.innerHTML = '';
     countryInfo.innerHTML = '';
 }
-

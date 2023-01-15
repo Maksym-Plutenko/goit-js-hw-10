@@ -1,5 +1,9 @@
 * {
   box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 body {
@@ -19,22 +23,37 @@ body {
   margin-bottom: 16px;
 }
 
+/* several countries list */
 .country-list {
   list-style-type: none;
-
-  font: inherit;
 }
 
 .country-item {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 10px;
 }
 
 .country-flag {
-  width: 100px;
-  /* flex-basis: 100px; */
+  width: 32px;
 }
 
-.country-info {
-  font: inherit;
+.country-name {
+  font-size: 22px;
+}
+
+.country-info_name-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.country-info_title {
+  font-size: 28px;
+}
+
+.country-info_text {
+  font-size: 22px;
+  margin-bottom: 5px;
 }
